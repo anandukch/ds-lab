@@ -9,6 +9,19 @@ typedef struct Node
   struct Node *right;
 } Node;
 
+typedef struct
+{
+  Node *root;
+} BinTree;
+// void initializeInsertion(Node*);
+
+BinTree *createTree()
+{
+  BinTree *tree = (BinTree *)malloc(sizeof(BinTree));
+  tree->root = NULL;
+  return tree;
+}
+
 Node *createNode()
 {
   Node *newNode = (Node *)malloc(sizeof(Node));
@@ -19,6 +32,10 @@ Node *createNode()
 
 void insertNode(int data, Node *node)
 {
+  // if (node == NULL)
+  // {
+  //   return;
+  // }
   char choice;
   node->data = data;
   printf("Does the node %d has left child : y/n : ", data);
@@ -51,6 +68,22 @@ void initializeInsertion(Node *root)
   insertNode(item, root);
 };
 
+// void insertNode(Node *node, int data){
+//   if(node == NULL){
+//     node = createNode(data);
+//     return;
+//   }
+//   if(data > node->data)
+//     if(node->right != NULL)
+//       return insertNode(node->right, data);
+//     else
+//       node->right = createNode(data);
+//   else
+//     if(node->left != NULL)
+//       return insertNode(node->left, data);
+//     else
+//       node->left = createNode(data);
+// }
 void inorderTraversal(Node *node)
 {
   if (node != NULL)
@@ -61,28 +94,19 @@ void inorderTraversal(Node *node)
   }
 }
 
-void postOrderTraversal(Node *node)
-{
-  if (node != NULL)
-  {
-    postOrderTraversal(node->left);
-    postOrderTraversal(node->right);
-    printf("%d ", node->data);
-  }
-}
-void preOrderTraversal(Node *node)
-{
-  if (node != NULL)
-  {
-    printf("%d ", node->data);
-    preOrderTraversal(node->left);
-    preOrderTraversal(node->right);
-  }
-}
-
 int main()
 {
   Node *root = createNode();
+  // Node *root=createNode(10);
+  // root->left = createNode(5);
+  // root->right = createNode(15);
+  // root->left->left = createNode(2);
+  // root->left->right = createNode(7);
+  // root=createNode(10);
+  // insertNode(root,5);
+  // insertNode(root,15);
+  // insertNode(root,20);
   initializeInsertion(root);
-  preOrderTraversal(root);
+
+  inorderTraversal(root);
 }
