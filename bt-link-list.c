@@ -19,11 +19,11 @@ Node *createNode(int data)
   return newNode;
 };
 
-void insertNode(int data, Node **node)
+void insertNode(int data, Node *node)
 {
   char choice;
   Node *newNode = createNode(data);
-  node = &newNode;
+  node = newNode;
   printf("Does the node has left child: y/n : ");
   scanf("%s", &choice);
   if (choice == 'y')
@@ -31,7 +31,7 @@ void insertNode(int data, Node **node)
     printf("Enter the left child data: ");
     int leftChildData;
     scanf("%d", &leftChildData);
-    return insertNode(leftChildData, &(*node)->left);
+    return insertNode(leftChildData, node->left);
   }
   printf("Does the node has right child: y/n : ");
   scanf("%s", &choice);
@@ -40,10 +40,10 @@ void insertNode(int data, Node **node)
     printf("Enter the right child data: ");
     int rightChildData;
     scanf("%d", &rightChildData);
-    return insertNode(rightChildData, &(*node)->right);
+    return insertNode(rightChildData, node->right);
   }
 }
-void initializeInsertion(Node **root)
+void initializeInsertion(Node *root)
 {
 
   int item;
@@ -65,6 +65,6 @@ void inorderTraversal(Node *node)
 int main()
 {
   Node *root = NULL;
-  initializeInsertion(&root);
+  initializeInsertion(root);
   inorderTraversal(root);
 }
